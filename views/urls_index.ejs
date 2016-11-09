@@ -1,0 +1,14 @@
+<html lang="en">
+<header>
+<% include ./partials/_header.ejs %>
+</header>
+<head>
+  <title>TinyApp</title>
+</head>
+<body>
+    <% for(var key in urls) { %>
+        <li>The short link for: <%= urls[key] %> is <%= key %></li>
+    <% }; %>
+      <l1><a href="url">click here</a> to make your own short link</l1>
+</body>
+</html>
