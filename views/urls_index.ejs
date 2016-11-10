@@ -1,13 +1,20 @@
+<!-- views/pages/index.ejs -->
+
 <!DOCTYPE html>
 <html lang="en">
-<header>
-<% include ./partials/_header.ejs %>
-</header>
 <head>
-  <title>TinyApp</title>
+    <% include partials/_header %>
 </head>
-<body>
-    <% for(var key in urls) { %>
+<body class="container">
+
+    <header>
+    </header>
+
+    <main>
+        <div class="jumbotron">
+            <h1>This is great</h1>
+            <p>Welcome to templating using EJS</p>
+            <% for(var key in urls) { %>
       <li>The short link for: <%= urls[key] %> is <%= key %></li>
       <a href="/urls/<%= key %>"> Edit key</a>
         <form method="POST" action="/urls/<%= key %>/delete">
@@ -15,6 +22,12 @@
           <input type="submit" value="delete"></input>
         </form>
       <% }; %>
-      <l1><a href="urls/new">click here</a> to make another short link</l1>
+        </div>
+        <l1><a href="urls/new">click here</a> to make another short link</l1>
+    </main>
+
+    <footer>
+    </footer>
+
 </body>
 </html>
