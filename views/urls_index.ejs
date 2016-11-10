@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <header>
 <% include ./partials/_header.ejs %>
@@ -7,8 +8,13 @@
 </head>
 <body>
     <% for(var key in urls) { %>
-        <li>The short link for: <%= urls[key] %> is <%= key %></li>
-    <% }; %>
-      <l1><a href="url">click here</a> to make your own short link</l1>
+      <li>The short link for: <%= urls[key] %> is <%= key %></li>
+      <a href="/urls/<%= key %>"> Edit key</a>
+        <form method="POST" action="/urls/<%= key %>/delete">
+           <label for="deleteKey">To delete key <%= key %>, click here:</label>
+          <input type="submit" value="delete"></input>
+        </form>
+      <% }; %>
+      <l1><a href="urls/new">click here</a> to make another short link</l1>
 </body>
 </html>

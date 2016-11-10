@@ -6,7 +6,15 @@
   <title>TinyApp</title>
 </head>
 <body>
-        <li>Original URL: <%= longURL %></li>
-        <li>Short form URL: <%= shortURL %></li>
+  <%= shortURL %> is now a key for: <a href="<%= longURL %>"><%= longURL %> </a>
+
+  <br> You can edit the URL attached to this key by entering a new URL below: </br>
+
+    <form action="/urls/<%= shortURL %>/update" method="POST">
+      <label for="newURL">Enter a new URL:</label>
+          <input id="newURL" type="text" name="newURL" placeholder="e.g. http://wwww.netflix.com" style="width: 300px"></input>
+          <input type="submit" value="Update"></input>
+    </form>
+
 </body>
 </html>
