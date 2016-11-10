@@ -69,17 +69,17 @@ app.post("/urls/:id/update", (req, res) => {
   res.redirect("/urls");
 });
 
-// app.post("/login", (req, res) => {
-//   let loginID = req.body.loginID;
-//   // res.cookie('username', loginID, {maxAge: 8460000});
-//   console.log(loginID)
-//   res.redirect("/");
-// });
+app.post("/login", (req, res) => {
+  let loginID = req.body.loginID;
+  // res.cookie('username', loginID, {maxAge: 8460000});
+  console.log(loginID)
+  res.redirect("/");
+});
 
-// let templateVars = {
-//     username: res.cookies["username"],
-// };
-// res.render("index", templateVars);
+let templateVars = {
+    username: res.cookies["username"],
+};
+res.render("index", templateVars);
 
 function generateRandomString() {
     let rand = "";
