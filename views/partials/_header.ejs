@@ -1,24 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+<body>
 <nav class="navbar navbar-default" role="navigation">
-    <div class="container-fluid">
+    <div class="container-fluid" >
 
         <div class="navbar-header">
             <a class="navbar-brand" href="#">
-                <span class="glyphicon glyphicon glyphicon-tree-deciduous"></span>
-                TinyApp
+                <span style="color:green;" class="glyphicon glyphicon glyphicon-tree-deciduous"></span>
+                Tiny App
             </a>
         </div>
-    <form action="/login" method="POST" style="margin:150px;">
-      <label for="loginID">Login:</label>
-      <input id="loginID" type="text" name="loginID" placeholder="username" style="width: 300px"/>
+
+    <% if (!username) { %>
+    <form action="/login" method="POST" style="margin:50px;">
+      <label for="loginID"></label>
+      <input id="loginID" type="text" name="loginID" placeholder="please enter username" style="width: 300px"/>
       <input type="submit" value="Login"/>
     </form>
+    <% } else { %>
+    <h4 style="text-align:right;">Welcome back <%= username %> ! </h4>
+    <form method="POST" action="/logout">
+           <label for="logout"></label>
+          <input type="submit" value="logout"></input>
+        </form>
+      <% }; %>
         <ul class="nav navbar-nav">
             <li><a href="/">Home</a></li>
-            <li><a href="/urls">Data</a></li>
-            <li><a href="/urls/new">New URL</a></li>
+            <li><a href="/urls">URLS</a></li>
+            <li><a href="/urls/new">New</a></li>
         </ul>
 
     </div>
 </nav>
+</body>
