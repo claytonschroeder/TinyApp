@@ -1,35 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
-<body>
-<nav class="navbar navbar-default" role="navigation">
-    <div class="container-fluid" >
-
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">
-                <span style="color:green;" class="glyphicon glyphicon glyphicon-tree-deciduous"></span>
-                Tiny App
+<html lang='en'>
+<head>
+ <meta charset='UTF-8'>
+  <title>Tiny App</title>
+    <link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
+      <style>
+      body { padding-top:30px; }
+      </style>
+        </head>
+        <body class='container'>
+          <nav class='navbar navbar-default' role='navigation'>
+            <div class='container-fluid' >
+            <div class='navbar-header'>
+            <a class='navbar-brand' href='#'>
+            <span style='color:green;' class='glyphicon glyphicon glyphicon-tree-deciduous'></span>
+            Tiny App
             </a>
-        </div>
-
-    <% if (!username) { %>
-    <form action="/login" method="POST" style="margin:50px;">
-      <label for="loginID"></label>
-      <input id="loginID" type="text" name="loginID" placeholder="please enter username" style="width: 300px"/>
-      <input type="submit" value="Login"/>
-    </form>
-    <% } else { %>
-    <h4 style="text-align:right;">Welcome back <%= username %> ! </h4>
-    <form method="POST" action="/logout">
-           <label for="logout"></label>
-          <input type="submit" value="logout"></input>
-        </form>
-      <% }; %>
-        <ul class="nav navbar-nav">
-            <li><a href="/">Home</a></li>
-            <li><a href="/urls">URLS</a></li>
-            <li><a href="/urls/new">New</a></li>
+            </div>
+            <% if (!email) { %>
+            <h4><a style='color:green;' href='/login'>Go to login page</a></h4>
+            <h4><a style='color:green;' href='/register'>Go to registration page</a></h4>
+            <% } else { %>
+            <h4 style='text-align:right;'>Welcome back <%= email %> ! </h4>
+            <form method='POST' action='/logout'>
+            <label for='logout'></label>
+           <input type='submit' value='logout'></input>
+            </form>
+            <% }; %>
+           <ul class='nav navbar-nav'>
+            <li><a href='/urls_list'>Home</a></li>
+            <li><a href='/urls'>URLS</a></li>
+            <li><a href='/urls/new'>New</a></li>
         </ul>
-
     </div>
 </nav>
-</body>

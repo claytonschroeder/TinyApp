@@ -1,34 +1,17 @@
 <!-- views/urls_new.ejs -->
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <% include partials/_head %>
-</head>
-<body class="container">
-
-    <header>
-        <% include partials/_header %>
-    </header>
+<% include partials/_header %>
 
     <main>
-
         <div class="jumbotron" style="background-color:green;">
-        <h1 style="color:white;">Enter a new URL below</h1>
-        <p style="color:white;">We will generate a new key for you</p>
-        <form action="/urls" method="POST" style="margin:35px;">
-      <label for="longURL"></label>
-      <input id="longURL" type="text" name="longURL" placeholder="e.g. http://wwww.netflix.com" style="width: 500px">
-      <input type="submit" value="Submit">
-    </form>
-
-
+            <h1 style="color:white;">Enter a new URL below</h1>
+            <h2 style="color:white;">We will generate a new short URL for you</h2>
+            <h2 style="color:white;">make sure you include 'http://'</h2>
+            <form action="/urls/new" method="POST" style="margin:35px;">
+                <label for="longURL"></label>
+                <input id="longURL" type="text" name="longURL" placeholder="e.g. http://wwww.google.com" style="width: 500px">
+            <input type="submit" value="Submit">
+        </form>
         </div>
     </main>
-
-    <footer>
-        <% include partials/_footer %>
-    </footer>
-
-</body>
-</html>
+<% include partials/_footer %>

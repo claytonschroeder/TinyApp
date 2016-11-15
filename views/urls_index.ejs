@@ -1,36 +1,20 @@
 <!-- views/urls_index.ejs -->
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <% include partials/_head %>
-</head>
-<body class="container">
+<% include partials/_header %>
 
-    <header>
-      <% include partials/_header %>
-    </header>
-
-    <main>
-        <div class="jumbotron" style="background-color:green;">
-            <h1 style="color:white;">My URL's</h1>
-            <h2 style="color:white;">Edit, delete, or add new URLS</h2>
-            <% for(var key in urls) { %>
-      <h3 style="color:white;">The short link for: <%= urls[key] %> is <a style="color:white;" href="/u/<%= key %>"> <%= key %> </a></h3>
-      <h3><a style="color:white;" href="/urls/<%= key %>"> Edit</a></h3>
-        <form method="POST" action="/urls/<%= key %>/delete">
+<main>
+  <div class="jumbotron" style="background-color:green;">
+    <h1 style="color:white;">My URL's</h1>
+    <h2 style="color:white;">Edit, delete, or add new URLS</h2>
+      <% for(var key in urls) { %>
+    <h3 style="color:white;">Main URL: <%= urls[key] %> <br> Short Key: <a style="color:white;" href="/u/<%= key %>"> <%= key %> </a></h3>
+    <h3><a style="color:white;" href="/urls/<%= key %>"> Edit</a></h3>
+    <form method="POST" action="/urls/<%= key %>/delete">
            <label for="deleteKey"></label>
           <input type="submit" value="delete"></input>
-        </form>
-      <% }; %>
-      <p><a tyle="color:white;" href="urls/new">click here</a> to make another short link</p>
-        </div>
+    </form>
+    <% }; %>
+  </div>
+</main>
 
-    </main>
-
-    <footer>
-      <% include partials/_footer %>
-    </footer>
-
-</body>
-</html>
+<% include partials/_footer %>
