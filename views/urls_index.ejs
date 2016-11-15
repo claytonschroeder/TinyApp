@@ -1,20 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<header>
-<% include ./partials/_header.ejs %>
-</header>
-<head>
-  <title>TinyApp</title>
-</head>
-<body>
-    <% for(var key in urls) { %>
-      <li>The short link for: <%= urls[key] %> is <%= key %></li>
-      <a href="/urls/<%= key %>"> Edit key</a>
-        <form method="POST" action="/urls/<%= key %>/delete">
-           <label for="deleteKey">To delete key <%= key %>, click here:</label>
+<!-- views/urls_index.ejs -->
+
+<% include partials/_header %>
+
+<main>
+  <div class="jumbotron" style="background-color:green;">
+    <h1 style="color:white;">My URL's</h1>
+    <h2 style="color:white;">Edit, delete, or add new URLS</h2>
+      <% for(var key in urls) { %>
+    <h3 style="color:white;">Main URL: <%= urls[key] %> <br> Short Key: <a style="color:white;" href="/u/<%= key %>"> <%= key %> </a></h3>
+    <h3><a style="color:white;" href="/urls/<%= key %>"> Edit</a></h3>
+    <form method="POST" action="/urls/<%= key %>/delete">
+           <label for="deleteKey"></label>
           <input type="submit" value="delete"></input>
-        </form>
-      <% }; %>
-      <l1><a href="urls/new">click here</a> to make another short link</l1>
-</body>
-</html>
+    </form>
+    <% }; %>
+  </div>
+</main>
+
+<% include partials/_footer %>

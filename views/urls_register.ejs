@@ -1,0 +1,20 @@
+<!-- views/urls_show.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <% include partials/_head %>
+
+    <main>
+        <div class="jumbotron" style="background-color:green;">
+            <h3 style="color:white;">Please fill out this form to register</h3>
+            <form action="/register" method="POST">
+              <label for="email"></label>
+                <br><input id="email" type="email" name="email" placeholder="enter email address" style="width: 300px"></input><br>
+                <br><input id="password" type="password" name="password" placeholder="enter password" style="width: 300px"></input><br><br>
+              <input type="submit" value="Submit"></input><br>
+            </form>
+        </div>
+    </main>
+
+<% include partials/_footer %>

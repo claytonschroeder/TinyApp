@@ -1,12 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head></head>
-  <body style="font-size:20px; padding:50px;">
-    <% include partials/_header %>
-    <form action="/urls" method="POST" style="margin:150px;">
-      <label for="longURL">Enter a URL:</label>
-      <input id="longURL" type="text" name="longURL" placeholder="e.g. http://wwww.netflix.com" style="width: 300px">
-      <input type="submit" value="Submit">
-    </form>
-  </body>
-</html>
+<!-- views/urls_new.ejs -->
+
+<% include partials/_header %>
+
+    <main>
+        <div class="jumbotron" style="background-color:green;">
+            <h1 style="color:white;">Enter a new URL below</h1>
+            <h2 style="color:white;">We will generate a new short URL for you</h2>
+            <h2 style="color:white;">make sure you include 'http://'</h2>
+            <form action="/urls/new" method="POST" style="margin:35px;">
+                <label for="longURL"></label>
+                <input id="longURL" type="text" name="longURL" placeholder="e.g. http://wwww.google.com" style="width: 500px">
+            <input type="submit" value="Submit">
+        </form>
+        </div>
+    </main>
+<% include partials/_footer %>

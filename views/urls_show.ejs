@@ -1,20 +1,17 @@
-<html lang="en">
-<header>
-<% include ./partials/_header.ejs %>
-</header>
-<head>
-  <title>TinyApp</title>
-</head>
-<body>
-  <%= shortURL %> is now a key for: <a href="<%= longURL %>"><%= longURL %> </a>
+<% include partials/_header %>
 
-  <br> You can edit the URL attached to this key by entering a new URL below: </br>
+    <main>
+        <div class="jumbotron" style="background-color:green;">
+            <h1 style="color:white;">Your short URL: <%= shortURL %></h1>
+                <h2 style="color:white;">is linked to URL: <a style="color:white;" href="<%= longURL %>"><%= longURL %> </a></h2>
+                <h3 style="color:white;">If you would like to change the URL attached, enter a new URL and press Update</h3>
+                <form action="/urls/<%= shortURL %>/update" method="POST">
+                    <label for="newURL"></label>
+                    <input id="newURL" type="text" name="newURL" placeholder="enter a new URL to update" style="width: 500px"></input>
+                    <input type="submit" value="Update"></input>
+                </form>
 
-    <form action="/urls/<%= shortURL %>/update" method="POST">
-      <label for="newURL">Enter a new URL:</label>
-          <input id="newURL" type="text" name="newURL" placeholder="e.g. http://wwww.netflix.com" style="width: 300px"></input>
-          <input type="submit" value="Update"></input>
-    </form>
+        </div>
+    </main>
 
-</body>
-</html>
+<% include partials/_footer %>
