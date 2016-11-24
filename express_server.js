@@ -228,7 +228,6 @@ app.post('/urls/new', (req, res) => {
   let shortURL = generateRandomString();
   let longURL = req.body.longURL;
   userDatabase[email].urls[shortURL] = longURL;
-  console.log(userDatabase);
   res.redirect('/urls');
 });
 //===================================================//
