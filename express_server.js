@@ -65,6 +65,10 @@ app.get('/urls_nonexist', (req, res) => {
   res.render('urls_nonexist');
 });
 
+app.get('/urls_not_authorized', (req, res) => {
+  res.render('urls_not_authorized');
+});
+
 //=================GET: REGISTRATION=====================//
 //  registration page contains a form for user to enter
 //  email and password.
@@ -89,17 +93,16 @@ app.post('/register', (req, res) => {
   let password = req.body.password;
   const saltround = 8;
   if (!email || !password) {
-    res.redirect('/register')
-    return res.status(400);
+    res.status(400);
+    res.render('urls_error')
   }
   if(email in userDatabase) {
+    res.status(400);
     res.redirect('urls_error_alreadyexists')
-    return res.status(400);
   } else {
   const hash = bcrypt.hashSync(req.body.password, 8);
   userDatabase[email] = {'email': email, 'password': hash, 'urls': {} };
   req.session.email = email;
-  console.log(userDatabase);
   res.redirect('/login');
   }
 });
@@ -194,13 +197,18 @@ app.get('/urls', auth, (req, res) => {
 //  should be able to visit /u/'shortURL' and be re-
 //  directed to the longURL.
 app.get('/u/:shortURL', (req, res) => {
-  let email = req.session.email;
   let shortURL = req.params.shortURL;
-  let longURL = userDatabase[email].urls[shortURL];
-  if (shortURL in userDatabase[email].urls) {
-    res.redirect(`${longURL}`)
-  } else {
-    res.redirect('/')
+  let URLexistance = false;
+  for (let email in userDatabase) {
+    for (let key in userDatabase[email].urls) {
+      if(key === shortURL) {
+        res.redirect(userDatabase[email].urls[shortURL]);
+        URLexistance = true;
+      }
+    }
+  }
+  if (!URLexistance) {
+    return res.status(404).render('urls_nonexist');
   }
 });
 //===================================================//
@@ -220,7 +228,6 @@ app.post('/urls/new', (req, res) => {
   let shortURL = generateRandomString();
   let longURL = req.body.longURL;
   userDatabase[email].urls[shortURL] = longURL;
-  console.log(userDatabase);
   res.redirect('/urls');
 });
 //===================================================//
@@ -244,32 +251,11 @@ app.get('/urls/:shortURL', auth, (req, res) => {
   for(let userID in userDatabase) {
     if(userDatabase[userID].urls[shortURL]) {
       //if some other user own the short URL
-      return res.status(403).render('urls_nonexist');
+      return res.status(403).render('urls_not_authorized');
     }
   }
   return res.status(404).render('urls_nonexist');
   // shortURL not found in DB.
-
-
-
-  // for(user in userDatabase) {
-  //   if(req.session.email !== userDatabase[user]) {
-  //     res.redirect('urls_nonexist')
-  //     return res.status(404);
-  //   } else {
-  //     res.render('urls_show', templateVars);
-  //   }
-  // }
-
-//  1) is the user logged in
-//  2) does it belong to the user currently logged in
-//  3) does the short URL being accessed exist in database
-
-//  find url,
-//  render the page with the shortURL
-
-
-
 });
 //===================================================//
 
